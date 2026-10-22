@@ -27,6 +27,8 @@
         <!-- Aquí se declararán más adelante las clases mapeadas/entidades -->
         <!-- <mapping class="ut4.modelo.NaveEntity"/> -->
                 <mapping class="com.mycompany.sistema_de_control_de_hangares_deathstar.modelos.Nave"/>
+                <mapping class="com.mycompany.sistema_de_control_de_hangares_deathstar.modelos.Planeta"/>
+
 
     </session-factory>
 </hibernate-configuration>

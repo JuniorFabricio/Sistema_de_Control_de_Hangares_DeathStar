@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 
@@ -38,6 +40,12 @@ public class Nave implements Serializable
 
     @Column(name = "estado_sistema", nullable = false, length = 20)
     private String estadoSistema;
+    
+    
+    //Esto sirve para la relaccion entre las dos tablas  para la FK
+    @ManyToOne
+    @JoinColumn(name="planeta_id")
+    private Planeta planeta;
 
     // Nota: Dejamos fuera temporalmente 'planeta_origen_id' para explicar 
     // las relaciones @ManyToOne en la siguiente sesión práctica.
@@ -53,6 +61,15 @@ public class Nave implements Serializable
         this.capacidadPasajeros = capacidadPasajeros;
         this.estadoSistema = estadoSistema;
     }
+       //Ponemos otro constructor en el cual ponemos el planeta
+    public Nave(String nombre, String modelo, int capacidadPasajeros, String estadoSistema, Planeta planeta) {
+        this.nombre = nombre;
+        this.modelo = modelo;
+        this.capacidadPasajeros = capacidadPasajeros;
+        this.estadoSistema = estadoSistema;
+        this.planeta = planeta;
+    }
+    
 
     // === Métodos de acceso públicos (Getters y Setters) ===
     public int getId() { return id; }
@@ -69,6 +86,16 @@ public class Nave implements Serializable
 
     public String getEstadoSistema() { return estadoSistema; }
     public void setEstadoSistema(String estadoSistema) { this.estadoSistema = estadoSistema; }
+
+    public Planeta getPlaneta() {
+        return planeta;
+    }
+
+    public void setPlaneta(Planeta planeta) {
+        this.planeta = planeta;
+    }
+    
+    
 
     // Sobreescritura útil para las salidas por consola de NetBeans
     @Override
