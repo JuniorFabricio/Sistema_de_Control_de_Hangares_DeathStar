@@ -6,6 +6,7 @@ package com.mycompany.sistema_de_control_de_hangares_deathstar.modelos;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -43,7 +44,7 @@ public class Nave implements Serializable
     
     
     //Esto sirve para la relaccion entre las dos tablas  para la FK
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="planeta_id")
     private Planeta planeta;
 

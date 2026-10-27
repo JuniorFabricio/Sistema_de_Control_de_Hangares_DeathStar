@@ -19,9 +19,10 @@ public class MainLaboratorio2
     public static void main(String[] args) 
     {
         
-           System.out.println("===Creamos el planeta y las naves===");
+        System.out.println("===Creamos el planeta y las naves===");
         Planeta astillero = new Planeta("Astillero de Corellia", "Mundos del Núcleo");
-
+        
+      
        
         Nave nave1 = new Nave("Caza TIE Básico", "TI-v1", 1, "Estable");
         Nave nave2 = new Nave("TIE Bomber", "TB-v1", 2, "Estable");
