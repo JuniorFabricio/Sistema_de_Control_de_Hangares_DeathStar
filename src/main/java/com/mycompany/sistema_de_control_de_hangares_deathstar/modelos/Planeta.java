@@ -21,7 +21,7 @@ import java.util.List;
  * @author jfabr
  */
 @Entity
-@Table(name="Planetas ")
+@Table(name="Planetas")
 public class Planeta implements Serializable
 {
     @Id

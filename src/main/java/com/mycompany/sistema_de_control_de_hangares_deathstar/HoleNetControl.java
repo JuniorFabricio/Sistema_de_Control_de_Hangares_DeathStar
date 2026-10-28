@@ -16,33 +16,31 @@ public class HoleNetControl {
 
     private final Session session;
 
-    public HoleNetControl(Session session) 
-    {
+    public HoleNetControl(Session session) {
         this.session = session;
     }
-    
-    public List<Nave> obtenerNavesPorBandoPlaneta(String bando)
-    {
-        return session.createQuery("SELECT n FROM Nave n INNER JOIN n.planeta p " +
-                "Where p.afiliacion= :bando AND n.estadoSistema != 'Mantenimiento'",Nave.class)
+
+    public List<Nave> obtenerNavesPorBandoPlaneta(String bando) {
+        return session.createQuery(
+                "SELECT n FROM Nave n INNER JOIN n.planeta p "
+                + "WHERE p.sectorGalactico = :bando AND n.estadoSistema != 'Mantenimiento'", Nave.class)
                 .setParameter("bando", bando)
                 .getResultList();
-        
-    
     }
-    
-    public List<Nave> obtenerFlotaCriticaConPlaneta()
-    {
-         return session.createQuery("SELECT n FROM Nave n LEFT JOIN FETCH n.planetaOrigen " +
-                "WHERE n.estadoSistema = 'Critico'", Nave.class)
+
+    public List<Nave> obtenerFlotaCriticaConPlaneta() {
+        return session.createQuery(
+                "SELECT n FROM Nave n LEFT JOIN FETCH n.planeta "
+                + "WHERE n.estadoSistema = 'Critico'", Nave.class)
                 .getResultList();
-    
+
     }
-   
-    public List<Object[]> obtenerReportePlanetasAsignados()
-    {
-    
-        return session.createQuery("SELECT n.nombre, p.nombre FROM Nave n LEFT JOIN n.planetaOrigen p ",Object[].class).getResultList();
+
+    public List<Object[]> obtenerReportePlanetasAsignados() {
+
+        return session.createQuery(
+                "SELECT n.nombre, p.nombrePlaneta FROM Nave n LEFT JOIN n.planeta p", Object[].class)
+                .getResultList();
     }
 
 }
